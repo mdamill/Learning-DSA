@@ -1,0 +1,338 @@
+				JAVASCRIPT
+
+1. Why 'let', but not 'var' ?
+
+2. typeof null --> is 'object' 
+
+3. On printing a variable with mized values ---> it will print 'NaN'
+
+4. console.log("1"+2+2) => 122 || console.log(1+2+"2") => 32 ||      console.log(1+2+"2"+1+5) => 3215
+
+5. console.log("2"==2) --> true    || console.log("2"===2) --> false
+
+6. Js Datatypes (search this topic on AI, for more details) : 1. Primittives & 2. Non-Primitives
+
+(Special type) => Symbol
+Eg : 
+
+const id = Symbol('123')
+const anotherId = Symbol('123')
+
+console.log(id == anotherId);
+console.log(id === anotherId); ---> false
+
+7. typeof Operator :- 11.4.3 [ https://262.ecma-international.org/5.1/#sec-11.4.3 ]
+
+8. Primitive datatype values are allocated in Stack(call by value), whereas Non-Primitives in HEAP(call by reference)
+
+9. String : ( study more about it's methods() )
+
+Declaration :- const str = new String ('Amil')
+
+NOTE : Use String Interpolation
+console.log(`My name is ${str} !`); => My name is Amil !
+
+10. Math.random() :- https://youtu.be/sscX432bMZo?t=9936
+
+11. Dates in Javascript : [ https://youtu.be/sscX432bMZo?t=10381 ]
+
+12. ARRAYS :
+* Arrays are Re-sizable * Can contain mixed datatypes *Any changes in arrays will reflect in the original array (shallow copies)
+
+13. Slice & Spice:-
+
+*	arr.splice(0, 4); ==> We see alteration in original array
+
+* But no alteration in original array, when we use slice.
+
+14. Spread operator : is an alternative to concatenation
+
+Ex:- let arr1 = [1,2,3]; let arr2 = [4,5,6];
+
+const spread_ans = [...arr1, ...arr2]; => [ 1, 2, 3, 4, 5, 6 ]
+
+15. flat() :- If there is multiple arrays inside arrays, and we want to resolve this into single array , we use this. [ * Infinity ---> depth ]
+
+16. from() & of() :-
+
+Array.from("Amil") => [ 'A', 'm', 'i', 'l' ]
+
+let a=100, b=500, c=900;
+console.log(Array.of(a,b,c)) => [ 100, 500, 900 ]
+
+17.OBJECTS : In objects we store values in key-value pair
+* Agr ham literal ki tarah declare karte hain to Singleton NHI banta hai
+*Objects elements can be accessed the following two ways :
+
+const obj = {
+
+    nickname : "Amil",
+    "full name" : "Mohammad Amil"
+}
+
+console.log( obj.nickname );
+
+console.log( obj["full name"] );
+
+* we can use : Object.freeze(<obj_name>) ---> to stop changes to propagate further
+
+18. TAKE A SYMBOL , ADD IT THE OBJECT'S KEY AND PRINT IT ? [IMP QUES.]
+ANS :-
+
+	const mySym = Symbol("abc");
+
+	const obj = {
+    [mySym] : "Kuch Bhi"
+	}
+
+	console.log( obj[mySym] ); ---> gives output ...
+
+19. Functions in Object:
+
+const obj = {
+    name: "Amil",   
+}
+
+obj.f1 = function(){
+    console.log("Hello ---> User");   
+}
+
+obj.f2 = function(){
+    console.log(`Hello ---> ${this.name}`);    
+}
+
+console.log(obj.f1());
+console.log(obj.f2());
+
+Output : 
+
+Hello ---> User
+undefined
+Hello ---> Amil
+undefined
+
+20. SINGLETON OBJECT :  const obj = new Object();
+
+    obj.name = "Md Amil";
+    obj.isLoggedIn = false;
+
+Output : { name: 'Md Amil', isLoggedIn: false }
+
+* WE CAN HAVE OBJECTS INSIDE OBJECTS
+
+21. Object Concat :-
+    
+const obj1 = {1: 'a', 2:'b'}
+const obj2 = {3: 'c', 4:'d'}
+
+const obj3 = {...obj1, ...obj2}; => { '1': 'a', '2': 'b', '3': 'c', '4': 'd' }
+
+22. Object.keys(<obj_name>) && Object.values(<obj_name>) : returns values inside an array.
+
+23. Object Destructuring : 
+    
+const obj = {
+    course : "JS",
+    Price : 999,
+    courseInstructor : "Hitesh"
+}
+
+const {courseInstructor} = obj
+const {course:C} = obj
+
+console.log(courseInstructor); => Hitesh
+console.log(C); => JS
+
+24. REST Operator :- Agar ek function ko ek parameter hi dia jae , lekin call karte waqt ek se zyada arguments hon to ye rest o/p spread o/p ke tarah hi hota hai , aur values ko array me dal deta hai .
+
+EX-   
+    function RestOp(val1, ...num){
+    return num;
+    }
+
+console.log( RestOp(2,56,200) ); => val1= 2 & ...num = [ 56, 200 ]
+
+25. we do not use var because , iska scope gloabl hai aur ek prblem aur hai ki kahi bhi update ho jata hai 
+
+26. agr ham ek normally function bnaen , to usko ham execute kar sakte hain 
+    uski calling statement ko uske upar likh kar ke bhi 
+
+    BUT, agr ek variable me koi function hond hai , to use uske upar call karne se error aega !
+
+27. observation : 'this' keyword when inside an object, it contain complete object when we print it
+* we were not able to use 'this' inside a just normal function , but only inside an object .
+
+28. Arrow Functions :- 
+
+    Way 1 :- 
+    const fn1 = (x,y) => {
+        return x+y 
+    }
+
+    Way 2 :- 
+    const f2 = (a,b) => a+b
+
+29. TO RETURN AN OBJECT FROM AN ARROW FN. WE NEED TO ENCLOSE IT WITHIN PARENTHESIS '()'
+Ex:
+
+    const return_obj = () => ({name: "Amil"}) ---> { name: 'Amil' }
+
+30. IIFE : (Immediately Invoked Function Expression)
+    GLOBAL SCOPE KE POLLUTION SE PROBLEM HOTI HAI KAI BAAR TO GLOBAL SCOPE KE VAIRABLES YA JO BHI DECLARATION HAIN , USE HTANE KE LIE HAM IIFE KA USE KARTE HAIN
+    * ISE ; SE TERMINATE KARNA CHAHIE
+
+Syntax : (<work>)()
+Example : 
+1. // Named IIFE
+(function code(){
+    console.log(`Hello`);
+    
+})()
+
+2. //IIFE With parameter
+( (name)=>{
+
+    console.log(`Array Function Execution with ${name}`);
+    
+} )("Amil");
+
+*NOTE:- To write more than one IIFE , we need to terminate one with ' ; '.
+
+31. How JS works behind the scenes [ https://youtu.be/sscX432bMZo?t=21336 ]
+
+32. Falsy values :- false, 0, -0, null, undefined, NaN, "", BigInt 0n
+    Trythy values:- "0"," ",'false',[],{},function(){}
+
+33. Nullish Coalesing Operator : this is diff. from ternary o/p
+
+val1 = 5 ?? 10 ---> 5
+
+val1 = null ?? 10 ---> 10
+
+val1 = undefined ?? 15 ---> 15
+
+val1 = null ?? 10 ?? 20; ---> 10
+
+34. for of loop : Can iterate arr and string .
+
+const str = "Hey World"
+
+for (const i of str) {
+    console.log(i);      
+}
+
+35. Maps : stores value in key-value pairs * stores only unique keys *OBJECTS cannot be iterated   through the for of loop. * Maps are not iterable .
+
+Syntax : 
+
+const map = new Map()
+
+map.set('IN',"India")
+map.set('US',"America")
+map.set('Fr',"France")
+
+for (const [k,v]  of map) {
+    console.log(k+":-"+v);   
+}
+
+36. for-in loop : can be used to iterate the objects
+EX:
+
+const obj ={
+    name : "AM",
+    std : 3,
+    sec : "B",
+    id : "22btcs0229"
+}
+
+for (const key in obj) {
+    
+    console.log(`${key} has the value ${ obj[key] } `);
+      
+}
+
+* AND IN ARRAYS IT RETURN INDEXES OF THE ARRAYS I.E FROM 0 -> N
+
+
+37. forEach loop :- is and Higher Order Function 
+    * Does not returns any value so we cannot perform any operations on the acessed value
+    
+
+    Syntax : <datatype_name>.forEach ( <callbackFn>(item, idx, arr) )
+
+    Ex:-  const arr = ["A", "B", "C", "D"]
+
+1. arr.forEach( function (i){
+    console.log(i);
+} ) ---> prints the arrays ele. one by one
+
+2.  arr.forEach( (item) => {
+    console.log(item);
+    
+} )
+
+OR arr.forEach((i)=>console.log(i))
+
+3.  function abc(item, idx){
+    console.log(`${idx} :- ${item}`);
+}
+
+arr.forEach(abc) //---> prints the index with array_ele
+
+38. filter() :- with this we can perform operations on the acessed value
+
+* It returns values , so we need to store this in a variable
+
+Ex:  const arr = [1,2,3,4,5,6]
+
+1.  
+let res = arr.filter( (i)=> {
+    return i>3;
+})  ---> [ 4, 5, 6 ]
+
+2.  let r = arr.filter( (i)=> (i%2==0) )  ---> [ 2, 4, 6 ]
+
+39. map() : [why better than forEach ? ]
+
+EX :-
+
+const r = [1,2,3,4,5,6,7,8,9,10]
+
+let res =  r.map( (i) => i*10 )
+            .map( (i) => i+1 )
+            .filter( (i)=> i>50 )
+
+console.log(res); 
+
+Output :- [ 51, 61, 71, 81, 91, 101 ]
+
+40. reduce() :- [ https://youtu.be/sscX432bMZo?t=31743 ]
+
+    Syntax :
+    <var_name>.reduce ((accumalator , currValue ) => acc+curr,
+    initial_val );
+
+Ex :    const arr = [1,2,3,4,5,6,7,8,9,10]
+
+// Adds array elements
+let res = arr.reduce( (acc,curr) => acc+curr,0 ); 
+
+Output --> Sum : 55
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
